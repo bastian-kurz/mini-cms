@@ -10,6 +10,6 @@ jobs:
       - uses: php-actions/composer@v6
 
       - name: PHPStan Analysis
-        uses: phpstan-actions/phpstan@v3
+        uses: php-actions/phpstan@v3
         with:
           php_version: 8.2
