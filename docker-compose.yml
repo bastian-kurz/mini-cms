@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mysql:
+    build: docker/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+    ports:
+      - "9018:3306"
+    volumes:
+      - ./docker/volumes/mariadb:/var/lib/mysql
+    networks:
+      - mini_cms_backend_net
+
+networks:
+  mini_cms_backend_net:
