@@ -20,6 +20,9 @@ jobs:
       - uses: php-actions/composer@v6
         with:
           fetch-depth: 0
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
 
       - name: Install PHP_CodeSniffer
         run: |
