@@ -13,3 +13,19 @@ jobs:
         uses: php-actions/phpstan@v3
         with:
           php_version: 8.2
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install PHP_CodeSniffer
+        run: |
+          curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+          php phpcs.phar --version
+
+      - name: Run PHP_CodeSniffer
+        run: |
+          ./vendor/bin/phpstan --memory-limit=1G
