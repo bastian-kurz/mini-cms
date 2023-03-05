@@ -1,0 +1,20 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\Controller\AuthController:
+    calls:
+      - [ 'setContainer', [ '@service_container' ] ]
+    arguments:
+      - '@League\OAuth2\Server\AuthorizationServer'
+      - '@Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory'
+
+#
+  Nyholm\Psr7\Factory\Psr17Factory:
+  Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory:
+    arguments:
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'

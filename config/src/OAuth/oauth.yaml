@@ -1,0 +1,54 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\OAuth\AccessTokenRepository:
+
+  App\OAuth\ClientRepository:
+    arguments:
+      - '@doctrine.dbal.default_connection'
+
+  App\OAuth\RefreshTokenRepository:
+    arguments:
+      - '@doctrine.dbal.default_connection'
+
+  App\OAuth\ResponseType:
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  App\OAuth\UserRepository:
+    arguments:
+      - '@doctrine.dbal.default_connection'
+
+  App\OAuth\ScopeRepository:
+    arguments:
+      - !tagged_iterator oauth.scope
+      - '@doctrine.dbal.default_connection'
+
+  App\OAuth\Scope\AdminScope:
+    tags: [ 'oauth.scope' ]
+
+  App\OAuth\Scope\UserScope:
+    tags: [ 'oauth.scope' ]
+
+  cms.private_key:
+    class: 'League\OAuth2\Server\CryptKey'
+    arguments:
+      - 'file://%kernel.project_dir%/config/jwt/private.key'
+      - '%env(string:OAUTH_PASSPHRASE)%'
+
+  cms.public_key:
+    class: 'League\OAuth2\Server\CryptKey'
+    arguments:
+      - 'file://%kernel.project_dir%/config/jwt/public.key'
+      - '%env(string:OAUTH_PASSPHRASE)%'
+
+  League\OAuth2\Server\AuthorizationServer:
+    arguments:
+      - '@App\OAuth\ClientRepository'
+      - '@App\OAuth\AccessTokenRepository'
+      - '@App\OAuth\ScopeRepository'
+      - '@cms.private_key'
+      - '%env(string:OAUTH_ENCRYPTION_KEY)%'
+      - '@App\OAuth\ResponseType'

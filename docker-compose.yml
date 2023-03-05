@@ -29,6 +29,7 @@ services:
 
   mysql:
     build: docker/mysql
+    container_name: mini-cms-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=docker
     ports:

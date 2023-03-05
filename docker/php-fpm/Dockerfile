@@ -27,5 +27,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 ENV APP_ENV=dev
 WORKDIR /app
+USER 1001:1001
 
 EXPOSE 9000
