@@ -1,0 +1,11 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\Controller\AuthController:
+    calls:
+      - [ 'setContainer', [ '@service_container' ] ]
+    arguments:
+      - '@League\OAuth2\Server\AuthorizationServer'
+      - '@Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory'

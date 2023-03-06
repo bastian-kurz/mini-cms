@@ -36,3 +36,11 @@ composer-require: ## install dependency (make composer-require dep=YOUR_DEP)
 .PHONY: composer-require-dev
 composer-require-dev: ## install dependency (make composer-require-dev dep=YOUR_DEP)
 	docker exec -it mini-cms-php composer require --dev ${dep}
+
+.PHONY: create-database
+create-database: ## creates app database
+	docker exec -it mini-cms-php php bin/console doctrine:database:create
+
+.PHONY: migrate
+migrate: ## runs doctrine:migrations:migrate
+	docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate

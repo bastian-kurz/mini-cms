@@ -1,0 +1,25 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  Nyholm\Psr7\Factory\Psr17Factory:
+  Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory:
+    arguments:
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+      - '@Nyholm\Psr7\Factory\Psr17Factory'
+
+  App\Api\EventListeners\ResponseExceptionListener:
+
+  App\Api\EventListeners\Authentication\ApiAuthenticationListener:
+    arguments:
+      - '@League\OAuth2\Server\ResourceServer'
+      - '@League\OAuth2\Server\AuthorizationServer'
+      - '@App\OAuth\UserRepository'
+      - '@App\OAuth\RefreshTokenRepository'
+      - '@Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory'
+
+  App\Api\EventListeners\CorsResponseListener:
+  App\Api\EventListeners\JsonRequestListener:

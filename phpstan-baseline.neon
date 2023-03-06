@@ -1,0 +1,61 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$haystack of function mb_stripos expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Api/EventListeners/JsonRequestListener.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\AccessToken\\:\\:__construct\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/AccessToken.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\AccessToken\\:\\:addScope\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/OAuth/AccessToken.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\AccessToken\\:\\:setScopes\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/AccessToken.php
+
+		-
+			message: "#^Property App\\\\OAuth\\\\ResponseType\\:\\:\\$entityManager is never read, only written\\.$#"
+			count: 1
+			path: src/OAuth/ResponseType.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:__construct\\(\\) has parameter \\$scopes with no value type specified in iterable type iterable\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:removeScopes\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:removeScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:uniqueScopes\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:uniqueScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Negated boolean expression is always true\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
+			message: "#^Property App\\\\OAuth\\\\ScopeRepository\\:\\:\\$connection is never read, only written\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
