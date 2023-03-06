@@ -4,6 +4,8 @@ services:
   php-fpm:
     build: docker/php-fpm
     container_name: mini-cms-php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - .:/app:cached
     depends_on:

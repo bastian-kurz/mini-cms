@@ -13,8 +13,8 @@ class User
     use EntityTrait;
 
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 32)]
-    private string $id;
+    #[ORM\Column(type: "integer", length: 11)]
+    private int $id;
 
     #[ORM\Column(type: "string", length: 256)]
     private string $email;
@@ -31,12 +31,12 @@ class User
     #[ORM\Column(type: "boolean")]
     private bool $active;
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(string $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }

@@ -27,6 +27,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function getClientEntity($clientIdentifier): ?ClientEntityInterface
     {
+        if ($clientIdentifier === 'administration') {
+            return new ApiClient($clientIdentifier, false);
+        }
+
         $data = $this->getByEmail($clientIdentifier);
         $client = new ApiClient($clientIdentifier, false, $data['email']);
         $client->setUserIdentifier($data['id']);
@@ -40,6 +44,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function validateClient($clientIdentifier, $clientSecret, $grantType): bool
     {
+        if (($grantType === 'password' || $grantType === 'refresh_token') && $clientIdentifier === 'administration') {
+            return true;
+        }
+
         if ($grantType === 'client_credentials' && $clientSecret !== null) {
             $data = $this->getByEmail($clientIdentifier);
 

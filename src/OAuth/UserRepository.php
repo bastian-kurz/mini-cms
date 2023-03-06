@@ -25,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
     public function getUserEntityByUserCredentials($username, $password, $grantType, ClientEntityInterface $clientEntity): ?UserEntityInterface
     {
         $user = $this->connection->createQueryBuilder()
-            ->select(['user_id', 'password'])
+            ->select(['id', 'password'])
             ->from('user')
             ->where('email = :email')
             ->setParameter('email', $username)

@@ -29,7 +29,6 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 
     /**
      * @throws Exception
-     * @throws \Exception
      */
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity): void
     {

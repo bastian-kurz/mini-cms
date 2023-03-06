@@ -7,7 +7,8 @@ imports:
     - { resource: src/ }
 
 parameters:
-
+    #dump the service container into a single file
+    container.dumper.inline_factories: true
 
 services:
     # default configuration for services in *this* file

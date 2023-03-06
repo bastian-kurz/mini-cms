@@ -1,14 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Property App\\\\Api\\\\Controller\\\\AuthController\\:\\:\\$authorizationServer is never read, only written\\.$#"
+			message: "#^Parameter \\#1 \\$haystack of function mb_stripos expects string, string\\|null given\\.$#"
 			count: 1
-			path: src/Api/Controller/AuthController.php
-
-		-
-			message: "#^Property App\\\\Api\\\\Controller\\\\AuthController\\:\\:\\$psrHttpFactory is never read, only written\\.$#"
-			count: 1
-			path: src/Api/Controller/AuthController.php
+			path: src/Api/EventListeners/JsonRequestListener.php
 
 		-
 			message: "#^Method App\\\\OAuth\\\\AccessToken\\:\\:__construct\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
@@ -64,8 +59,3 @@ parameters:
 			message: "#^Property App\\\\OAuth\\\\ScopeRepository\\:\\:\\$connection is never read, only written\\.$#"
 			count: 1
 			path: src/OAuth/ScopeRepository.php
-
-		-
-			message: "#^Property App\\\\OAuth\\\\User\\:\\:\\$identifier \\(string\\) does not accept string\\|null\\.$#"
-			count: 1
-			path: src/OAuth/User.php

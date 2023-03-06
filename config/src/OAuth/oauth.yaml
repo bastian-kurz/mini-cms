@@ -52,3 +52,15 @@ services:
       - '@cms.private_key'
       - '%env(string:OAUTH_ENCRYPTION_KEY)%'
       - '@App\OAuth\ResponseType'
+
+  League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator:
+    arguments:
+      - '@App\OAuth\AccessTokenRepository'
+    calls:
+      - [ 'setPublicKey', ['@cms.public_key'] ]
+
+  League\OAuth2\Server\ResourceServer:
+    arguments:
+      - '@App\OAuth\AccessTokenRepository'
+      - '@cms.public_key'
+      - '@League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator'
