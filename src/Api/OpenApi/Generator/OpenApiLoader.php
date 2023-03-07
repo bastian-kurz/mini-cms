@@ -24,7 +24,7 @@ class OpenApiLoader
     /**
      * @throws ReflectionException
      */
-    public function load(): OpenApi
+    public function load(): ?OpenApi
     {
         $pathsToScan = array_unique(iterator_to_array($this->getApiRoutes(), false));
         return OpenApiGenerator::scan(

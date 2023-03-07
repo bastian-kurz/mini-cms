@@ -6,6 +6,11 @@ parameters:
 			path: src/Api/EventListeners/JsonRequestListener.php
 
 		-
+			message: "#^Parameter \\#1 \\$objectOrClass of class ReflectionClass constructor expects class\\-string\\<T of object\\>\\|T of object, string\\|false given\\.$#"
+			count: 1
+			path: src/Api/OpenApi/Generator/OpenApiLoader.php
+
+		-
 			message: "#^Method App\\\\OAuth\\\\AccessToken\\:\\:__construct\\(\\) has parameter \\$scopes with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/OAuth/AccessToken.php

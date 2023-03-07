@@ -15,7 +15,6 @@ class InfoControllerTest extends WebTestCase
     {
         parent::setUp();
         $this->client = static::createClient();
-
     }
 
     /** @test */
