@@ -30,7 +30,7 @@ class UserControllerTest extends WebTestCase
         $this->assertIsArray($data);
         $this->assertTrue(count($data) > 0);
 
-        foreach($data as $key => $item) {
+        foreach ($data as $key => $item) {
             $this->assertArrayHasKey('id', $data[$key]);
             $this->assertArrayHasKey('name', $data[$key]);
             $this->assertArrayHasKey('username', $data[$key]);
@@ -49,7 +49,6 @@ class UserControllerTest extends WebTestCase
             $this->assertArrayHasKey('name', $data[$key]['company']);
             $this->assertArrayHasKey('catchPhrase', $data[$key]['company']);
             $this->assertArrayHasKey('bs', $data[$key]['company']);
-
         }
     }
 }

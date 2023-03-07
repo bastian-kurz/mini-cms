@@ -25,7 +25,6 @@ class UserListService implements ListServiceInterface
         $this->serializer = $serializer;
     }
 
-
     /**
      * @throws TransportExceptionInterface
      * @throws ServerExceptionInterface

@@ -9,18 +9,14 @@ use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
 class UserController extends AbstractController
 {
     private ListServiceInterface $userListService;
 
-    private Environment $twig;
-
-    public function __construct(ListServiceInterface $userListService, Environment $twig)
+    public function __construct(ListServiceInterface $userListService)
     {
         $this->userListService = $userListService;
-        $this->twig = $twig;
     }
 
     #[OA\Get(
