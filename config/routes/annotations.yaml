@@ -1,3 +1,7 @@
-controllers:
+controllers-api:
   resource: ../../src/Api/**/*Controller.php
+  type: annotation
+
+controller-frontend:
+  resource: ../../src/Controller/*Controller.php
   type: annotation

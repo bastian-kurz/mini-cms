@@ -1,0 +1,9 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\User\Service\UserListService:
+    arguments:
+      - '@http_client'
+      - '@serializer'

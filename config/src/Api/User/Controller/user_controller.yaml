@@ -1,0 +1,11 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\User\Controller\UserController:
+    calls:
+      - ['setContainer', ['@service_container']]
+    arguments:
+      - '@App\Api\User\Service\UserListService'
+      - '@Twig_Environment'

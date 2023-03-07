@@ -25,6 +25,7 @@ services:
             - '../src/Entity/'
             - '../src/Api/'
             - '../src/OAuth/'
+            - '../src/Controller/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
