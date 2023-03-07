@@ -1,0 +1,8 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\OpenApi\Generator\OpenApiLoader:
+    arguments:
+      - '@Symfony\Component\Routing\RouterInterface'

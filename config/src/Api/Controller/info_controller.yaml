@@ -1,0 +1,11 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Api\Controller\InfoController:
+    calls:
+      - ['setContainer', [ '@service_container' ] ]
+    arguments:
+      - '@App\Api\OpenApi\Generator\OpenApiLoader'
+      - '@Twig_Environment'
