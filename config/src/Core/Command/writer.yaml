@@ -1,0 +1,6 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Core\Command\Writer:

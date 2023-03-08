@@ -6,7 +6,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: UserEntityRepository::class)]
 #[ORM\Table(name: 'user')]
 class User
 {
@@ -14,6 +14,7 @@ class User
 
     #[ORM\Id]
     #[ORM\Column(type: "integer", length: 11)]
+    #[ORM\GeneratedValue]
     private int $id;
 
     #[ORM\Column(type: "string", length: 256)]
@@ -22,10 +23,10 @@ class User
     #[ORM\Column(type: "string", length: 60)]
     private string $password;
 
-    #[ORM\Column(type: "string", length: 128)]
+    #[ORM\Column(type: "string", length: 128, nullable: true)]
     private ?string $secret;
 
-    #[ORM\Column(type: "text")]
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $scopes;
 
     #[ORM\Column(type: "boolean")]

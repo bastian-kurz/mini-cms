@@ -24,7 +24,7 @@ class UserController extends AbstractController
         operationId: '',
         description: 'Fetch a list of all users',
         summary: '',
-        tags: ['API'],
+        tags: ['User'],
         responses: [
             new OA\Response(
                 response: 200,
