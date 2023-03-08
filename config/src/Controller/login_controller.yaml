@@ -1,0 +1,10 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Controller\LoginController:
+    calls:
+      - [ 'setContainer', [ '@service_container' ] ]
+    arguments:
+      - '@Twig_Environment'

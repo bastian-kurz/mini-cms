@@ -28,7 +28,7 @@ class UserController extends AbstractController
         $user = $this->userListService->fetchList();
         $userData = $this->userListService->convert($user);
         $content = $this->twig->render(
-            'User/user_list.html.twig',
+            'Frontend/user_list.html.twig',
             [
                 'users' => $userData
             ]

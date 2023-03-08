@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="container d-flex flex-column min-vh-100 justify-content-center">
+        <div class="card mx-auto" style="width: 30rem;">
+            <div class="card-body">
+                <form
+                        action="{{ path('api.oauth.token') }}"
+                        method="POST"
+                        data-action="login#onSubmit"
+                        data-controller="login">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input data-login-target="email" type="email" class="form-control" id="email"
+                               aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input data-login-target="password" type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                    <div data-login-target="errorLogin" id="login_error" class="alert alert-danger text-center"
+                         role="alert" hidden>
+                        Email/Password are not correct, please try again
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

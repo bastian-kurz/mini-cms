@@ -44,3 +44,7 @@ create-database: ## creates app database
 .PHONY: migrate
 migrate: ## runs doctrine:migrations:migrate
 	docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate
+
+.PHONY: encore
+encore: ## yarn encore dev
+	yarn encore dev
