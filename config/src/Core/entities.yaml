@@ -1,0 +1,13 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  content.repository:
+    class: 'App\Core\CustomEntityRepository'
+    arguments:
+      - '@doctrine.orm.default_entity_manager'
+      - 'App\Entity\ContentEntity'
+      - '@serializer'
+      - '@validator'
+      - '@App\Core\Command\Writer'

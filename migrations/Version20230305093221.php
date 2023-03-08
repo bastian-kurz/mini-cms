@@ -26,11 +26,11 @@ final class Version20230305093221 extends AbstractMigration
   `secret` varchar(128) DEFAULT NULL,
   `scopes` text DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_email_IDX` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;');
 
         $this->addSql('CREATE TABLE `refresh_token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

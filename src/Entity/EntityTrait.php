@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Defaults;
 use DateTimeImmutable;
+use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 trait EntityTrait
 {
     #[ORM\Column(type: "datetime_immutable")]
-    private DateTimeImmutable $createdAt;
+    private ?DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(type: "datetime_immutable")]
-    private DateTimeImmutable $updatedAt;
+    #[ORM\Column(type: "datetime_immutable", nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(type: "string", length: 32)]
-    private string $updater;
-
-    public function getCreatedAt(): DateTimeImmutable
+    public function getCreatedAt(): ?string
     {
-        return $this->createdAt;
+        return $this->createdAt?->format('Y-m-d H:i:s');
     }
 
     public function setCreatedAt(DateTimeImmutable $createdAt): void
@@ -28,23 +28,28 @@ trait EntityTrait
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): DateTimeImmutable
+    public function getUpdatedAt(): ?string
     {
-        return $this->updatedAt;
+        return $this->updatedAt?->format('Y-m-d H:i:s');
     }
 
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    public function getUpdater(): string
+    /**
+     * @throws Exception
+     */
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateTimestamps(): void
     {
-        return $this->updater;
-    }
+        $now = (new DateTimeImmutable(timezone: (new DateTimeZone(Defaults::timeZone->value))));
+        $this->setUpdatedAt($now);
 
-    public function setUpdater(string $updater): void
-    {
-        $this->updater = $updater;
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt($now);
+        }
     }
 }

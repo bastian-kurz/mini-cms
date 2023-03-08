@@ -49,7 +49,7 @@ class AuthController extends AbstractController
                 ]
             )
         ),
-        tags: ['API', 'Authorization & Authentication'],
+        tags: ['Authorization & Authentication'],
         responses: [
             new OA\Response(
                 response: 200,
