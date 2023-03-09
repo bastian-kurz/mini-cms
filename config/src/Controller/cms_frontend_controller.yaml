@@ -1,0 +1,11 @@
+parameters:
+services:
+  _defaults:
+    autoconfigure: true
+
+  App\Controller\CmsFrontendController:
+    arguments:
+      - '@content.repository'
+      - '@Twig_Environment'
+    calls:
+      - [ 'setContainer', [ '@service_container' ] ]
