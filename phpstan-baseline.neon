@@ -46,6 +46,11 @@ parameters:
 			path: src/Api/User/Service/UserListService.php
 
 		-
+			message: "#^Cannot access offset 0 on \\(App\\\\Entity\\\\EntityInterface&Countable\\)\\|array\\<App\\\\Entity\\\\EntityInterface\\>\\|\\(Countable&iterable\\<App\\\\Entity\\\\EntityInterface\\>\\)\\.$#"
+			count: 1
+			path: src/Controller/CmsFrontendController.php
+
+		-
 			message: "#^Call to an undefined method App\\\\Entity\\\\EntityInterface\\:\\:getId\\(\\)\\.$#"
 			count: 1
 			path: src/Core/Command/Writer.php
