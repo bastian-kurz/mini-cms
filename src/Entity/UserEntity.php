@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserEntityRepository::class)]
 #[ORM\Table(name: 'user')]
-class User
+class UserEntity implements EntityInterface
 {
     use EntityTrait;
 

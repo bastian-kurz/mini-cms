@@ -17,7 +17,6 @@ export default class extends Controller {
             headers: {'Content-type': 'application/json'}
         })
             .then((response) => {
-                console.log(response.status);
                 if (response.status === 200) {
                     response.json().then((data) => {
                         localStorage.setItem('auth', JSON.stringify(data));

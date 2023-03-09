@@ -1,0 +1,47 @@
+<div>
+    <table class="table table-bordered align-middle mb-0 bg-white table-hover table-striped">
+        <thead class="bg-light">
+        <tr class="table-primary">
+            <th>Id</th>
+            <th>Iso-Code</th>
+            <th>Titel</th>
+            <th>Inhalt</th>
+            <th>Erstellt am</th>
+            <th>Aktualisiert am</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in data %}
+            <tr class="table-secondary">
+                <td>{{ item.id }}</td>
+                <td>{{ item.isoCode }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.text| length > 100 ? item.text|slice(0, 100) ~ '...' : item.text }}</td>
+                <td>{{ item.createdAt }}</td>
+                <td>{{ item.updatedAt }}</td>
+                <td>
+                    <button
+                            data-action="btn#edit"
+                            data-btn-id-param="{{ item.id }}"
+                            class="btn edit-btn"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="{{ btnEdit }}">
+                        <i class="bi bi-pencil-fill" style="font-size: 1rem;"></i>
+                    </button>
+                    <button
+                            data-action="btn#delete"
+                            data-btn-id-param="{{ item.id }}"
+                            class="btn delete-btn"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="{{ btnDelete }}">
+                        <i class="bi bi-trash3-fill" style="font-size: 1rem;"></i>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

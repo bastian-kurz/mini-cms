@@ -27,7 +27,7 @@ class CmsFrontendController extends AbstractController
     public function cmsFrontend(string $isoCode, string $title): Response
     {
         $entities = $this->customEntityRepository->read(['isoCode' => $isoCode, 'title' => $title], null);
-        if (!is_countable($entities) ||count($entities) === 0) {
+        if (!is_countable($entities) || count($entities) === 0) {
             return new Response($this->twig->render('Frontend/404_not_found.html.twig'), Response::HTTP_NOT_FOUND);
         }
 
