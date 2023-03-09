@@ -57,7 +57,7 @@ class ApiAuthenticationListener implements EventSubscriberInterface
             return;
         }
 
-        $tenMinuteInterval = new DateInterval('PT10M');
+        $tenMinuteInterval = new DateInterval('P1W');
         $oneWeekInterval = new DateInterval('P1W');
 
         $passwordGrant = new PasswordGrant($this->userRepository, $this->refreshTokenRepository);

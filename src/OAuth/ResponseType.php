@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\OAuth;
 
+use App\OAuth\Scope\AdminScope;
 use Doctrine\ORM\EntityManager;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\ResponseTypes\BearerTokenResponse;
@@ -22,6 +23,17 @@ class ResponseType extends BearerTokenResponse
      */
     public function getExtraParams(AccessTokenEntityInterface $accessToken): array
     {
-        return parent::getExtraParams($accessToken);
+        $isAdmin = false;
+        foreach ($accessToken->getScopes() as $scope) {
+            if ($scope->getIdentifier() === AdminScope::IDENTIFIER) {
+                $isAdmin = true;
+                break;
+            }
+        }
+
+        return [
+            'scopes' => $accessToken->getScopes(),
+            'isAdmin' => $isAdmin
+        ];
     }
 }

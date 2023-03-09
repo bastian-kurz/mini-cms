@@ -1,0 +1,38 @@
+<div class="card mx-auto" style="width: 30rem;">
+    <div data-btn-target="errorCreateUpdate" id="error-create-update" class="alert alert-danger text-center"
+         role="alert" hidden>
+    </div>
+    <div class="card-body">
+        <form data-action="btn#onSubmit">
+            <input type="hidden" data-btn-target="update" value="{{ isUpdate }}"/>
+            <input type="hidden" data-btn-target="contentId" value=""/>
+            <div class="mb-3">
+                <label for="isoCode" class="form-label">{{ labelIsoCode }}</label>
+                <input data-btn-target="isoCode" type="text" class="form-control" id="isoCode" maxlength="2"
+                       minlength="2" required>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">{{ labelTitle }}</label>
+                <input data-btn-target="title" type="text" class="form-control" id="title" maxlength="100"
+                       minlength="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">{{ labelText }}</label>
+                <textarea data-btn-target="content" class="form-control" id="content" rows="20" required></textarea>
+            </div>
+            <div class="clearfix">
+
+                <button data-action="btn#cancel" type="button" class="btn btn-secondary">
+                    <i class="bi bi-backspace"></i>
+                    {{ btnCancel }}
+                </button>
+                <button type="submit" class="btn btn-primary float-right">
+                    <i class="bi bi-rocket-takeoff"></i>
+                    {{ btnSave }}
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

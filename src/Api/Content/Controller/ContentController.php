@@ -68,7 +68,7 @@ class ContentController extends AbstractController implements ApiControllerInter
             )
         ]
     )]
-    #[Route('/api/content/{id}', 'content.get', defaults: ['auth_required' => false], methods: ['GET'])]
+    #[Route('/api/content/{id}', name: 'api.content.get', defaults: ['auth_required' => false], methods: ['GET'])]
     public function get(int $id): Response
     {
         $entity = $this->customEntityRepository->read(null, $id);
@@ -114,7 +114,7 @@ class ContentController extends AbstractController implements ApiControllerInter
             )
         ]
     )]
-    #[Route('/api/content', 'content.list', defaults: ['auth_required' => false], methods: ['GET'])]
+    #[Route('/api/content', name: 'api.content.list', defaults: ['auth_required' => false], methods: ['GET'])]
     public function list(Request $request): Response
     {
         $entities = $this->customEntityRepository->read($request->query->all(), null);
@@ -163,7 +163,7 @@ class ContentController extends AbstractController implements ApiControllerInter
             )
         ]
     )]
-    #[Route('/api/content', 'content.create', defaults: ['auth_required' => false], methods: ['POST'])]
+    #[Route('/api/content', name: 'api.content.create', defaults: ['auth_required' => false], methods: ['POST'])]
     public function create(Request $request): Response
     {
         $id = $this->customEntityRepository->create($request->request->all());
@@ -174,7 +174,7 @@ class ContentController extends AbstractController implements ApiControllerInter
     #[OA\Patch(
         path: '/api/content/{id}',
         operationId: '',
-        description: 'Create content',
+        description: 'Update content',
         summary: '',
         requestBody: new OA\RequestBody(request: 'das', required: true, content: new OA\JsonContent(
             properties: [
@@ -214,7 +214,7 @@ class ContentController extends AbstractController implements ApiControllerInter
         )
         ]
     )]
-    #[Route('/api/content/{id}', 'content.update', defaults: ['auth_required' => false], methods: ['PATCH'])]
+    #[Route('/api/content/{id}', name: 'api.content.update', defaults: ['auth_required' => false], methods: ['PATCH'])]
     public function update(Request $request, int $id): Response
     {
         $id = $this->customEntityRepository->update($request->request->all(), $id);
@@ -252,7 +252,7 @@ class ContentController extends AbstractController implements ApiControllerInter
             )
         ]
     )]
-    #[Route('/api/content/{id}', 'content.delete', defaults: ['auth_required' => false], methods: ['DELETE'])]
+    #[Route('/api/content/{id}', name: 'api.content.delete', defaults: ['auth_required' => false], methods: ['DELETE'])]
     public function delete(int $id): Response
     {
         $this->customEntityRepository->delete($id);

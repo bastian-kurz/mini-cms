@@ -2,5 +2,5 @@
 
 {% block title %}{{ cms.title }}{% endblock %}
 {% block content %}
-    {{ cms.text }}
+    {{ cms.text|raw }}
 {% endblock %}

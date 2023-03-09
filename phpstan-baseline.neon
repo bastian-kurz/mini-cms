@@ -116,6 +116,11 @@ parameters:
 			path: src/OAuth/ScopeRepository.php
 
 		-
+			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:removeScopes\\(\\) is unused\\.$#"
+			count: 1
+			path: src/OAuth/ScopeRepository.php
+
+		-
 			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:removeScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/OAuth/ScopeRepository.php
@@ -127,15 +132,5 @@ parameters:
 
 		-
 			message: "#^Method App\\\\OAuth\\\\ScopeRepository\\:\\:uniqueScopes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/OAuth/ScopeRepository.php
-
-		-
-			message: "#^Negated boolean expression is always true\\.$#"
-			count: 1
-			path: src/OAuth/ScopeRepository.php
-
-		-
-			message: "#^Property App\\\\OAuth\\\\ScopeRepository\\:\\:\\$connection is never read, only written\\.$#"
 			count: 1
 			path: src/OAuth/ScopeRepository.php

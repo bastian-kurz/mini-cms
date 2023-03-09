@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\OAuth;
 
 use App\OAuth\Scope\AdminScope;
+use App\OAuth\Scope\UserScope;
 use Doctrine\DBAL\Connection;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
@@ -35,14 +36,29 @@ class ScopeRepository implements ScopeRepositoryInterface
 
     public function finalizeScopes(array $scopes, $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null): array
     {
-        $hasWrite = false;
+        $finalScopes = [];
+        $dbScopes = $this->connection->createQueryBuilder()
+            ->select('scopes')
+            ->from('user')
+            ->where('id = :userIdentifier')
+            ->setParameter('userIdentifier', $userIdentifier)
+            ->setMaxResults(1)
+            ->executeQuery()
+            ->fetchOne();
 
-        if (!$hasWrite) {
-            $scopes = $this->removeScopes($scopes, AdminScope::class);
+        if (strlen($dbScopes) > 0) {
+            $dbScopes = array_flip(explode(',', $dbScopes));
         }
-        //@Todo user permission correct
 
-        return $this->uniqueScopes($scopes);
+        if (array_key_exists(AdminScope::IDENTIFIER, $dbScopes)) {
+            $finalScopes[] = new AdminScope();
+        }
+
+        if (array_key_exists(UserScope::IDENTIFIER, $dbScopes)) {
+            $finalScopes[] = new UserScope();
+        }
+
+        return $this->uniqueScopes($finalScopes);
     }
 
     private function uniqueScopes(array $scopes): array
