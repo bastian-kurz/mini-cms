@@ -46,3 +46,11 @@ path: ./openapi.yaml
 # Run PHPUnit tests within docker container
 docker exec -it mini-cms-php ./vendor/bin/phpunit
 ```
+
+## Exercises
+1. localhost:8080/de/impressum && localhost:8080/en/imprint
+2. localhost:8080/api/content
+3. localhost:8080/user
+4. localhost:8080/login
+
+Bonus: openapi.yaml in root folder
