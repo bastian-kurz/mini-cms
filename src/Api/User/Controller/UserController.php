@@ -21,7 +21,7 @@ class UserController extends AbstractController
 
     #[OA\Get(
         path: '/api/user',
-        operationId: '',
+        operationId: 'getUser',
         description: 'Fetch a list of all users',
         summary: '',
         tags: ['User'],

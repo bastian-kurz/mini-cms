@@ -28,7 +28,7 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Get(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'getContentById',
         description: 'Fetch content for one entity',
         summary: '',
         tags: ['Content'],
@@ -77,7 +77,7 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Get(
         path: '/api/content',
-        operationId: '',
+        operationId: 'getContent',
         description: 'Fetch content list',
         summary: '',
         tags: ['Content'],
@@ -123,7 +123,7 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Post(
         path: '/api/content',
-        operationId: '',
+        operationId: 'createContent',
         description: 'Create content',
         summary: '',
         requestBody: new OA\RequestBody(request: 'das', required: true, content: new OA\JsonContent(
@@ -173,10 +173,10 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Patch(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'updateContent',
         description: 'Update content',
         summary: '',
-        requestBody: new OA\RequestBody(request: 'das', required: true, content: new OA\JsonContent(
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(
             properties: [
                 new OA\Property(property: 'isoCode', required: ['true'], type: 'string', maxLength: 2, example: 'de'),
                 new OA\Property(property: 'title', required: ['true'], type: 'string', maxLength: 100, example: 'Impressum'),
@@ -224,7 +224,7 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Delete(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'deleteContent',
         description: 'Delete content for one entity',
         summary: '',
         tags: ['Content'],

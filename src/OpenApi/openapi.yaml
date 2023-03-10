@@ -1,0 +1,219 @@
+openapi: 3.0.0
+info:
+  title: 'Mini-CMS API'
+  version: 0.0.1
+paths:
+  '/api/content/{id}':
+    get:
+      tags:
+        - Content
+      summary: ''
+      description: 'Fetch content for one entity'
+      operationId: getContentById
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+      responses:
+        '200':
+          description: 'Get content successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { properties: { id: { type: integer }, isoCode: { type: string }, title: { type: string }, text: { type: string }, createdAt: { type: string }, updatedAt: { type: string } }, type: object }
+                type: object
+        '400':
+          description: 'Bad request. Content ID must be an integer and larger than 0'
+        '401':
+          description: 'Authorization information is missing or invalid.'
+        '403':
+          description: 'Not found. Resource could not be found by given id.'
+        '500':
+          description: 'Unexpected error.'
+    delete:
+      tags:
+        - Content
+      summary: ''
+      description: 'Delete content for one entity'
+      operationId: deleteContent
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+      responses:
+        '204':
+          description: 'Delete content successfully'
+        '400':
+          description: 'Bad request. Content ID must be an integer and larger than 0'
+        '401':
+          description: 'Authorization information is missing or invalid.'
+        '403':
+          description: 'Not found. Resource could not be found by given id.'
+        '500':
+          description: 'Unexpected error.'
+    patch:
+      tags:
+        - Content
+      summary: ''
+      description: 'Update content'
+      operationId: updateContent
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                isoCode:
+                  required: ['true']
+                  type: string
+                  maxLength: 2
+                  example: de
+                title:
+                  required: ['true']
+                  type: string
+                  maxLength: 100
+                  example: Impressum
+                text:
+                  required: ['true']
+                  type: string
+                  example: 'Example text to show'
+              type: object
+      responses:
+        '201':
+          description: 'Create content successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { properties: { '': { properties: { id: { type: integer }, isoCode: { type: string }, title: { type: string }, text: { type: string }, createdAt: { type: string }, updatedAt: { type: string } }, type: object } }, type: object }
+                type: object
+        '401':
+          description: 'Authorization information is missing or invalid.'
+        '500':
+          description: 'Unexpected error.'
+  /api/content:
+    get:
+      tags:
+        - Content
+      summary: ''
+      description: 'Fetch content list'
+      operationId: getContent
+      responses:
+        '200':
+          description: 'Get content list successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { properties: { '': { properties: { id: { type: integer }, isoCode: { type: string }, title: { type: string }, text: { type: string }, createdAt: { type: string }, updatedAt: { type: string } }, type: object } }, type: object }
+                type: object
+        '401':
+          description: 'Authorization information is missing or invalid.'
+        '403':
+          description: 'Not found. Resource could not be found by given id.'
+        '500':
+          description: 'Unexpected error.'
+    post:
+      tags:
+        - Content
+      summary: ''
+      description: 'Create content'
+      operationId: createContent
+      requestBody:
+        request: das
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                isoCode:
+                  required: ['true']
+                  type: string
+                  maxLength: 2
+                  example: de
+                title:
+                  required: ['true']
+                  type: string
+                  maxLength: 100
+                  example: Impressum
+                text:
+                  required: ['true']
+                  type: string
+                  example: 'Example text to show'
+              type: object
+      responses:
+        '201':
+          description: 'Create content successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { properties: { '': { properties: { id: { type: integer }, isoCode: { type: string }, title: { type: string }, text: { type: string }, createdAt: { type: string }, updatedAt: { type: string } }, type: object } }, type: object }
+                type: object
+        '401':
+          description: 'Authorization information is missing or invalid.'
+        '500':
+          description: 'Unexpected error.'
+  /oauth/token:
+    post:
+      tags:
+        - 'Authorization & Authentication'
+      summary: 'Fetch an access token'
+      description: 'Fetch a access token that can be used to perform authenticated requests'
+      operationId: token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              description: 'For more information take a look at the [Authentication documentation]'
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  description: 'The grant type that should be used. See [OAuth 2.0 grant](https://oauth2.thephpleague.com/authorization-server/which-grant/) for more information.'
+                  type: string
+                  enum: [password, refresh_token, client_credentials]
+              type: object
+      responses:
+        '200':
+          description: 'Authorized successfully.'
+          content:
+            application/json:
+              schema:
+                properties:
+                  token_type: { description: 'Type of the token.', type: string }
+                  expires_in: { description: 'Token lifetime in seconds.', type: integer }
+                  access_token: { description: 'The access token that can be used for subsequent requests', type: string }
+                type: object
+  /api/user:
+    get:
+      tags:
+        - User
+      summary: ''
+      description: 'Fetch a list of all users'
+      operationId: getUser
+      responses:
+        '200':
+          description: 'Get users list successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  id: { type: integer }
+                  name: { type: string }
+                  userName: { type: string }
+                  email: { type: string }
+                  address: { properties: { street: { type: string }, suite: { type: string }, city: { type: string }, zipcode: { type: string }, geo: { properties: { lat: { type: string }, lng: { type: string } }, type: object } }, type: object }
+                  phone: { type: string }
+                  website: { type: string }
+                  company: { properties: { name: { type: string }, catchPhrase: { type: string }, bs: { type: string } }, type: object }
+                type: object
