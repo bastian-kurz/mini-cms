@@ -28,11 +28,11 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Get(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'getContentById',
         description: 'Fetch content for one entity',
         summary: '',
         tags: ['Content'],
-        parameters: [new OA\PathParameter(name: 'id', required: true)],
+        parameters: [new OA\PathParameter(name: 'id', required: true, schema: new OA\Schema(type: 'integer', format: 'int64'))],
         responses: [
             new OA\Response(
                 response: 200,
@@ -77,27 +77,24 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Get(
         path: '/api/content',
-        operationId: '',
+        operationId: 'getContentList',
         description: 'Fetch content list',
-        summary: '',
+        summary: 'getContent',
         tags: ['Content'],
         responses: [
             new OA\Response(
                 response: 200,
                 description: 'Get content list successfully',
                 content: new OA\JsonContent(
-                    properties: [
-                        new OA\Property(property: 'data', properties: [
-                            new OA\Property(property: '', properties: [
-                                new OA\Property(property: 'id', type: 'integer'),
-                                new OA\Property(property: 'isoCode', type: 'string'),
-                                new OA\Property(property: 'title', type: 'string'),
-                                new OA\Property(property: 'text', type: 'string'),
-                                new OA\Property(property: 'createdAt', type: 'string'),
-                                new OA\Property(property: 'updatedAt', type: 'string'),
-                            ])
-                        ])
-                    ]
+                    type: 'array',
+                    items: new OA\Items(properties: [
+                        new OA\Property(property: 'id', type: 'integer'),
+                        new OA\Property(property: 'isoCode', type: 'string'),
+                        new OA\Property(property: 'title', type: 'string'),
+                        new OA\Property(property: 'text', type: 'string'),
+                        new OA\Property(property: 'createdAt', type: 'string'),
+                        new OA\Property(property: 'updatedAt', type: 'string'),
+                    ])
                 )
             ),
             new OA\Response(
@@ -123,10 +120,10 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Post(
         path: '/api/content',
-        operationId: '',
+        operationId: 'createContent',
         description: 'Create content',
         summary: '',
-        requestBody: new OA\RequestBody(request: 'das', required: true, content: new OA\JsonContent(
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(
             properties: [
                 new OA\Property(property: 'isoCode', required: ['true'], type: 'string', maxLength: 2, example: 'de'),
                 new OA\Property(property: 'title', required: ['true'], type: 'string', maxLength: 100, example: 'Impressum'),
@@ -173,10 +170,10 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Patch(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'updateContent',
         description: 'Update content',
         summary: '',
-        requestBody: new OA\RequestBody(request: 'das', required: true, content: new OA\JsonContent(
+        requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(
             properties: [
                 new OA\Property(property: 'isoCode', required: ['true'], type: 'string', maxLength: 2, example: 'de'),
                 new OA\Property(property: 'title', required: ['true'], type: 'string', maxLength: 100, example: 'Impressum'),
@@ -184,7 +181,7 @@ class ContentController extends AbstractController implements ApiControllerInter
             ]
         )),
         tags: ['Content'],
-        parameters: [new OA\PathParameter(name: 'id', required: true)],
+        parameters: [new OA\PathParameter(name: 'id', required: true, schema: new OA\Schema(type: 'integer', format: 'int64'))],
         responses: [
         new OA\Response(
             response: 201,
@@ -224,11 +221,11 @@ class ContentController extends AbstractController implements ApiControllerInter
 
     #[OA\Delete(
         path: '/api/content/{id}',
-        operationId: '',
+        operationId: 'deleteContent',
         description: 'Delete content for one entity',
         summary: '',
         tags: ['Content'],
-        parameters: [new OA\PathParameter(name: 'id', required: true)],
+        parameters: [new OA\PathParameter(name: 'id', required: true, schema: new OA\Schema(type: 'integer', format: 'int64'))],
         responses: [
             new OA\Response(
                 response: 204,
