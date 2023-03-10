@@ -49,11 +49,13 @@ class AuthControllerTest extends WebTestCase
             ->values([
                 'email' => ':email',
                 'password' => ':password',
+                'scopes' => ':scopes',
                 'created_at' => ':createdAt'
             ])
             ->setParameters([
                 'email' => 'test@test.de',
                 'password' => password_hash('12345', PASSWORD_DEFAULT),
+                'scopes' => 'ROLE_ADMIN,ROLE_USER',
                 'createdAt' => (new DateTimeImmutable())->format('Y-m-d H:i:s')
             ])
             ->executeQuery();
@@ -92,6 +94,8 @@ class AuthControllerTest extends WebTestCase
         $this->assertArrayHasKey('expires_in', $token);
         $this->assertArrayHasKey('access_token', $token);
         $this->assertArrayHasKey('refresh_token', $token);
+        $this->assertArrayHasKey('scopes', $token);
+        $this->assertTrue($token['isAdmin']);
     }
 
     /**

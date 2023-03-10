@@ -46,6 +46,10 @@ class ScopeRepository implements ScopeRepositoryInterface
             ->executeQuery()
             ->fetchOne();
 
+        if ($dbScopes === null) {
+            return $this->uniqueScopes($finalScopes);
+        }
+
         if (strlen($dbScopes) > 0) {
             $dbScopes = array_flip(explode(',', $dbScopes));
         }
