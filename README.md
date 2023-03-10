@@ -40,3 +40,9 @@ docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate
 ```bash
 path: ./openapi.yaml
 ```
+
+## PHPUnit
+```bash
+# Run PHPUnit tests within docker container
+docker exec -it mini-cms-php ./vendor/bin/phpunit
+```
