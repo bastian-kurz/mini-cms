@@ -9,6 +9,6 @@ import (
 func TestConfig(t *testing.T) {
 	t.Run("test load configuration", func(t *testing.T) {
 		is := is2.New(t)
-		is.Equal("mini-cms", config.Config().MYSQL.Database)
+		is.Equal("mini_cms", config.Config().MYSQL.Database)
 	})
 }
