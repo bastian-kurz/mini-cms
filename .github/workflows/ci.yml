@@ -58,7 +58,7 @@ jobs:
           go-version: '1.20'
 
       - name: Start container
-        run: docker-compose up mysql
+        run: docker-compose up -d mysql
 
       - name: Run test
         run: |
