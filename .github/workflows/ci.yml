@@ -57,7 +57,14 @@ jobs:
         with:
           go-version: '1.20'
 
+      - name: Start container
+        run: docker-compose up mysql
+
       - name: Run test
         run: |
           cd Golang
           make test
+
+      - name: Stop container
+        if: always()
+        run: docker-compose down mysql
