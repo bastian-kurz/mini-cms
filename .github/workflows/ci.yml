@@ -46,18 +46,28 @@ jobs:
           sha256sum --check local-php-security-checker.sha256
           chmod +x local-php-security-checker
           ./local-php-security-checker
-  
-  go-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup GO
-        uses: actions/setup-go@v3
-        with:
-          go-version: '1.20'
+# will be enabled when all images stored as package registry in the project itself
+# at the moment it takes to many minutes to spin up the docker containers
 
-      - name: Run test
-        run: |
-          cd Golang
-          make test
+#  go-test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Setup GO
+#        uses: actions/setup-go@v3
+#        with:
+#          go-version: '1.20'
+#
+#      - name: Start container
+#        run: docker-compose up -d
+#
+#      - name: Run test
+#        run: |
+#          cd Golang
+#          make test
+#
+#      - name: Stop container
+#        if: always()
+#        run: docker-compose down mysql

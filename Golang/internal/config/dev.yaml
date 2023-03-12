@@ -1,0 +1,8 @@
+mysql:
+  host: 127.0.0.1:9018
+  database: mini_cms
+  user: root
+  password: docker
+  charset: utf8mb4
+  parseTime: true
+  loc: Local

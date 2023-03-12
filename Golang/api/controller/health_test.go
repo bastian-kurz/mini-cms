@@ -1,4 +1,4 @@
-package api_test
+package controller_test
 
 import (
 	"github.com/bastian-kurz/mini-cms/integrationtest"
