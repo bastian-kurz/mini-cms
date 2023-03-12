@@ -1,4 +1,4 @@
-package internal
+package logger
 
 import (
 	"github.com/bastian-kurz/mini-cms/internal/env"
@@ -7,11 +7,11 @@ import (
 	"sync"
 )
 
-var once sync.Once
+var loggerOnce sync.Once
 var logger *zap.Logger
 
 func Log() *zap.Logger {
-	once.Do(func() {
+	loggerOnce.Do(func() {
 		appEnv := env.GetStringOrDefault("APP_ENV", "develop")
 		switch appEnv {
 		case "develop":

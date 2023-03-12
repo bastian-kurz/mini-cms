@@ -1,7 +1,9 @@
 package server
 
-import "github.com/bastian-kurz/mini-cms/api"
+import (
+	"github.com/bastian-kurz/mini-cms/api/controller"
+)
 
 func (s *Server) SetupRoutes() {
-	api.Health(s.mux)
+	controller.Health(s.mux)
 }
