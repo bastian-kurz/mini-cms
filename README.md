@@ -19,7 +19,7 @@ docker exec -it mini-cms-php composer install
 docker exec -it mini-cms-php php bin/console doctrine:database:create
 
 # Make migration within the docker container
-docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate
+docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate --no-interaction
 ```
 ## Frontend-URL's
 | URL            | Info                                     |

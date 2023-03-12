@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/bastian-kurz/mini-cms/internal/db"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
@@ -58,7 +59,8 @@ func NewServer(opts Options) *Server {
 
 // Start the Server by setting up routes and listening for HTTP requests on the given address.
 func (s *Server) Start() error {
-	s.SetupRoutes()
+	s.SetupRoutes(db.Connect())
+
 	s.log.Info("Starting", zap.String("address", s.address))
 	if err := s.server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		return fmt.Errorf("error starting server: %w", err)
