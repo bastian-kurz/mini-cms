@@ -27,7 +27,7 @@ docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate --no-in
 cd Golang
 
 # Download packages
-go mod download -x
+go mod download -x OR go mod tidy
 
 # Start server
 go run cmd/server.go
