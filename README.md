@@ -66,10 +66,9 @@ docker exec -it mini-cms-php ./vendor/bin/phpunit
 4. localhost:8080/login
 
 ## Bonus1
-openapi.yaml in root folder
+openapi.yaml is in root folder
 ## Bonus2
-1. openapi.yaml in root folder
-2. Golang - API will start on PORT 8000 and has the same /api/content endpoints like the php one
+Golang - API will start on PORT 8000 and has the same /api/content endpoints like the php one
 
 
 ## Golang Endpoints
