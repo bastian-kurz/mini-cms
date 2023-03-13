@@ -11,6 +11,7 @@ cd mini-cms
 docker-compose up
 
 # In a new terminal  run the following commands
+cd mini-cms
 
 # Install composer dependencies within the docker container
 # to fetch the dependencies for the correct php version
@@ -21,6 +22,10 @@ docker exec -it mini-cms-php php bin/console doctrine:database:create
 
 # Make migration within the docker container
 docker exec -it mini-cms-php php bin/console doctrine:migrations:migrate --no-interaction
+
+# Start Golang server
+cd Golang
+go run cmd/server.go
 ```
 
 is everything up and running it should look like this:
@@ -70,6 +75,8 @@ openapi.yaml is in root folder
 ## Bonus2
 Golang - API will start on PORT 8000 and has the same /api/content endpoints like the php one
 
+### Notice
+normally the Golang project would not be in the same project as the php/symfony part.
 
 ## Golang Endpoints
 | Method | URL                               | Body                                                                    | Info               |
