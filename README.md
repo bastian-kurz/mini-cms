@@ -91,3 +91,13 @@ normally the Golang project would not be in the same project as the php/symfony 
 | POST   | localhost://8000/api/content      | ```{"isoCode": "UN","title": "Unit-Test","text": "Unit-Test-Text"}```   | Add new record     |
 | PATCH  | localhost://8000/api/content/{id} | ```{"isoCode": "UD","title": "Unit-Test2","text": "Unit-Test-Text3"}``` | Update record      |
 | DELETE | localhost://8000/api/content/{id} |                                                                         | Delete record      |
+
+## Troubleshoot
+if there is a message like:
+```bash
+{"errors":{"code":"0","status":"500","title":"Internal Server Error","detail":"User Notice: Key file \u0022file:\/\/\/app\/config\/jwt\/private.key\u0022 permissions are not correct, recommend changing to 600 or 660 instead of 644"}}
+```
+
+you have to change the permissions of the file config/jwt/private.key and config/jwt/public.key to 0660
+
+if there is a message like:
