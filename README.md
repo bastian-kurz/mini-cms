@@ -37,7 +37,6 @@ is everything up and running it should look like this:
 ```bash
 bastian.kurz@NB00242 mini-cms % docker ps
 CONTAINER ID   IMAGE                           COMMAND                  CREATED        STATUS        PORTS                            NAMES
-c0f60c52b7ae   mini-cms-golang                 "./server"               11 hours ago   Up 11 hours   0.0.0.0:8000->8081/tcp           mini-cms-golang
 2e7e0a3b2a76   mini-cms-nginx                  "/docker-entrypoint.…"   2 days ago     Up 11 hours   8080/tcp, 0.0.0.0:8080->80/tcp   mini-cms-nginx
 bfcd89721ff5   mini-cms-php-fpm                "/bin/sh -c 'chown -…"   2 days ago     Up 11 hours   9000/tcp                         mini-cms-php
 3ecfd0d417ac   mini-cms-mysql                  "docker-entrypoint.s…"   3 days ago     Up 11 hours   0.0.0.0:9018->3306/tcp           mini-cms-mysql
