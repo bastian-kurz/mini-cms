@@ -42,5 +42,36 @@ services:
     networks:
       - mini_cms_backend_net
 
+  golang:
+    build:
+      context: ./Golang
+      dockerfile: docker/Dockerfile
+    container_name: mini-cms-golang
+    ports:
+      - "8000:8081"
+    environment:
+      - HOST=
+      - PORT=8081
+      - APP_CONFIGURATION_PATH=dev_php_docker_compose
+    depends_on:
+      wait-for-db:
+        condition: service_completed_successfully
+    links:
+      - mysql
+    networks:
+      - mini_cms_backend_net
+
+  wait-for-db:
+    image: atkrad/wait4x
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    networks:
+      - mini_cms_backend_net
+    command: tcp mysql:3306 -t 30s -i 250ms
+
 networks:
   mini_cms_backend_net:

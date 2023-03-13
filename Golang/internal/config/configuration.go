@@ -30,7 +30,8 @@ func Config() *SystemConfiguration {
 	configOnce.Do(func() {
 		conf := viper.New()
 
-		confName := fmt.Sprintf("%s%s.yaml", internal.ConfigDir, getEnv())
+		confName := fmt.Sprintf("%s.yaml", getConfigFilePath())
+
 		conf.SetConfigFile(confName)
 		conf.SetConfigType("yaml")
 
@@ -55,4 +56,8 @@ func Config() *SystemConfiguration {
 
 func getEnv() string {
 	return env.GetStringOrDefault("APP_ENV", "dev")
+}
+
+func getConfigFilePath() string {
+	return env.GetStringOrDefault("APP_CONFIGURATION_PATH", internal.ConfigDir+getEnv())
 }
