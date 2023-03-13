@@ -99,5 +99,3 @@ if there is a message like:
 ```
 
 you have to change the permissions of the file config/jwt/private.key and config/jwt/public.key to 0660
-
-if there is a message like:
